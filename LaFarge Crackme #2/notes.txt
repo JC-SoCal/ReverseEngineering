@@ -1,0 +1,30 @@
+Username must have at least 4 char...
+Nope, thats not it!
+Try again
+
+jcjc
+3568830317
+
+4012DB
+
+0) ignore the first character of the username
+
+1) xor the bytes of the username against 0xAA, 0x89, 0xC4, 0xFE, 0x46
+after each xor replace the xor byte with the username character that it was xor'ed
+against
+
+2) xor the already xored username from RIGHT to LEFT with these bytes per character 0x78, 0xF0, 0xd0, 0x3, 0xE7 and each xor is done, store the Plain text character
+in the key byte array 
+
+3) looks like the same as 1) with these bytes for the XOR 0xF7, 0xFD, 0xF4, 0xE7, 0xB9
+
+4) same as 2) with these keys RIGHT TO LEFt 0xB5 0x1B 0xC9 0x50 0x73
+
+5) adding in a loop of 4 (0,1,2,3) a byte array of [0x00, 0x00, 0x00, 0x00] 
+after each iteration, place the sum into the respetive array position
+
+6) take that dword value (4 bytes of sums) and divide them by 10
+add 48 (0x30) to the lower 1 byte of the remainder
+move the last byte of the sum to a new array (the answer)
+
+7) reverse the answer to get the final answer 
